@@ -1,0 +1,104 @@
+---
+layout: table_wrappers
+nav_enabled: true
+---
+
+<!DOCTYPE html>
+
+<html lang="{{ site.lang | default: 'en-US' }}">
+{% include hyplayer/hyplayer_head.html %}
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ29ZBCR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  {% include icons/icons.html %}
+  {% if page.nav_enabled == true %}
+    {% include components/sidebar.html %}
+  {% elsif layout.nav_enabled == true and page.nav_enabled == nil %}
+    {% include components/sidebar.html %}
+  {% elsif site.nav_enabled != false and layout.nav_enabled == nil and page.nav_enabled == nil %}
+    {% include components/sidebar.html %}
+  {% endif %}
+  <div class="main" id="top">
+    {% include components/hyplayer_header.html %}
+    <div class="main-content-wrap" style="padding-top: 0 !important;">
+      <div id="main-content" class="main-content">
+        <!-- Fixed header with BWV navigation and audio controls -->
+        <div id="header-wrapper" class="sticky-top bg-light">
+          <!-- BWV Navigation Bar -->
+          <!-- Header with title and audio controls -->
+          <div id="header" class="py-2 container text-center" style="background-color: transparent;">
+            <div class="d-flex align-items-center justify-content-center position-relative gap-2"
+              style="background-color: transparent;">
+			  <!-- PDF download icon -->
+              <a href="../{{ page.pdf_path }}" class="btn rounded-pill icon-link icon-link-hover fs-3 text-red-300" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0); width: 7.5rem;">
+                Unduh PDF
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"></path>
+                </svg>
+              </a>
+              <!-- Main audio player -->
+              <audio id="audio" class="flex-grow-1 my-1" style="max-width: 40rem; max-height: 2rem;" controls>
+                <source id="audio-source" src="" type="audio/wav">
+                Your browser does not support the audio element.
+              </audio>
+              <!-- Bar spy - positioned dynamically by JavaScript -->
+              <div id="bar_spy" class="badge rounded-pill text-bg-secondary d-flex align-items-center gap-1"
+                style="visibility: hidden; width: 7.5rem;">
+                <div style="width: 100%;">
+                <span id="current_bar">1</span>
+                <span>/</span>
+                <span id="total_bars">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add missing main-content wrapper -->
+        <div class="main-content" style="position: relative;">
+          <!-- Bootstrap loading animation -->
+          <div id="loading"
+            style="position: relative; top: var(--header-height); left: 0; right: 0; bottom: 0; z-index: 1000; background-color: white; margin: 0; padding: 0;"
+            class="d-flex align-items-center justify-content-center">
+            <div class="text-center">
+              <div class="spinner-border text-primary mb-3"
+                style="width: 4rem; height: 4rem; color: #8B4513 !important;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div class="text-muted"><!--Loading --><span id="loading-werk"></span></div>
+            </div>
+          </div>
+          <!-- Main content area for musical notation -->
+          <div class="container" style="background-color: transparent; padding-left: unset; padding-right: unset;">
+            <!-- Updated measure controls with fixed dropdown styling -->
+            <div id="measure-controls" style="display: none;">
+              <label for="highlight-select">Measure Highlighting:</label>
+              <select id="highlight-select" class="form-select form-select-sm">
+                <option value="">None</option>
+              </select>
+              <small id="highlight-info" class="text-muted ms-2" style="display: none;"></small>
+            </div>
+            <div id="svg-container"></div>
+          </div>
+        </div> <!-- End main-content wrapper -->
+        <script>
+          window.moduleConfig = { lagu: "{{ page.workId }}" }
+        </script>
+        <script type="module" src="../assets/js/hyplayer.js"></script>
+        {% include components/footer.html %}
+      </div>
+    </div>
+    {% if site.search_enabled != false %}
+      {% include components/search_footer.html %}
+    {% endif %}
+  </div>
+
+  {% if site.mermaid %}
+    {% include components/mermaid.html %}
+  {% endif %}
+</body>
+
+</html>
