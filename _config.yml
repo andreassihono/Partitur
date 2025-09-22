@@ -15,6 +15,7 @@ destination: _site
 repository: henriyulianto/partitur
 remote_theme: pmarsceill/just-the-docs
 lang: "id-ID"
+plugins: []
 
 permalink: pretty
 
