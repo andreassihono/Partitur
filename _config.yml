@@ -13,7 +13,9 @@ baseurl: /partitur
 source: .
 destination: _site
 repository: henriyulianto/partitur
-remote_theme: pmarsceill/just-the-docs
+# remote_theme: pmarsceill/just-the-docs
+remote_theme: pages-themes/minimal
+
 lang: "id-ID"
 plugins: []
 
