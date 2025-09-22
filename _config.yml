@@ -1,45 +1,4 @@
-title: Repo Partitur
-description: Repositori Partitur Not Angka oleh Henri Yulianto
-
-# Use the GitHub Pages–compatible remote theme
-remote_theme: pmarsceill/just-the-docs
-
-# Set a path/url to a logo that will be displayed instead of the title
-logo: "assets/images/hy-site-logo.svg"
-
-# Set a path/url to a favicon that will be displayed by the browser
-# favicon_ico: "assets/images/favicon.ico"
-
-url: https://andreassihono.github.io
-baseurl: /Partitur
-
-lang: "id-ID"
-
-# Only allow whitelisted plugins
-plugins:
-  - jekyll-seo-tag
-
-permalink: pretty
-
-defaults:
-  - scope:
-      path: "" # applies to all files
-      type: "pages"
-    values:
-      layout: "default"
-
-exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/
-
-# Aux links for the upper right navigation
-aux_links:
-  Solmisasi Lily: https://henriyulianto.github.io/solmisasi-lily
-aux_links_new_tab: true
-
-# Footer
-footer_content: "Copyright &copy; 2025. Lisensi: GNU GPLv3."
+title: Partitur
+description: Repo Partitur Test
+remote_theme: pages-themes/minimal
+plugins: []
